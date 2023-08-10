@@ -20,7 +20,7 @@ jobs:
       run: docker build -t ajelo1/testcicd .
       
     - name: Log in to Docker Hub
-      run: docker login -u ajelo1 -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      run: docker login -u ajelo1 -p ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Push Docker image
       run: docker push ajelo1/testcicd
