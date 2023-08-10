@@ -1,0 +1,26 @@
+name: Docker Build & Push
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - desarrollo
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Build Docker image
+      run: docker build -t ajelo1/testcicd -f hola\ mundo/ .
+      
+    - name: Log in to Docker Hub
+      run: docker login -u ajelo1 -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+    - name: Push Docker image
+      run: docker push ajelo1/testcicd
